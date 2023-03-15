@@ -35,7 +35,7 @@ router.post("/add",async(request,response)=>{
         newIncomeData.day= dates.getDate();
         newIncomeData.month= dates.getMonth()+1;
         newIncomeData.year= dates.getFullYear();
-        newIncomeData.date = new Date();
+        newIncomeData.date = (dates.getMonth()+1)+"/"+dates.getDate()+"/"+dates.getFullYear()+" "+ dates.getHours() + ":" + dates.getMinutes() + ":" + dates.getSeconds();
        
         const result = await addincome(newIncomeData)
         
