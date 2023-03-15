@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { incomerouter } from "./router/income.js";
 import { expenserouter } from "./router/expense.js";
+import { client } from "./db.js";
 
 
 
