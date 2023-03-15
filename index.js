@@ -11,6 +11,22 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/",async(req,res)=>{
+    const incomedata =  await client
+    .db("moneyManager")
+    .collection("income")
+    .find()
+    .toArray()
+
+    const expensedata = await client
+    .db("moneyManager")
+    .collection("expense")
+    .find()
+    .toArray()
+
+
+    res.status(200).json({incomedata:incomedata,expensedata:expensedata})
+})
 
 app.use("/income" , incomerouter);
 app.use("/expense",expenserouter);
