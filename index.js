@@ -12,8 +12,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const dates = new Date();
-   console.log(dates.getHours(),dates.getMinutes(),dates.getSeconds())
+// const dates = new Date();
+// console.log(dates)
+//    console.log(dates.getHours(),dates.getMinutes(),dates.getSeconds())
 
 app.get("/",async(req,res)=>{
     const incomedata =  await client

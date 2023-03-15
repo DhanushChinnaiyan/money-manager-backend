@@ -30,12 +30,12 @@ router.post("/add",async(request,response)=>{
         if(!newIncomeData){
             return response.status(400).json({data:"No content provided"})
         }
+        dates.getHours(),dates.getMinutes(),dates.getSeconds()
         const dates = new Date();
         newIncomeData.day= dates.getDate();
         newIncomeData.month= dates.getMonth()+1;
         newIncomeData.year= dates.getFullYear();
-        newIncomeData.time = dates.getHours() + ":" + dates.getMinutes() + ":" + dates.getSeconds()
-        newIncomeData.date = (dates.getMonth()+1)+"/"+dates.getDate()+"/"+dates.getFullYear()+" "+ dates.getHours() + ":" + dates.getMinutes() + ":" + dates.getSeconds();
+        newIncomeData.date = dates;
        
         const result = await addincome(newIncomeData)
         
