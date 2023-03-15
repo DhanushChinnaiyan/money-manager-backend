@@ -35,7 +35,7 @@ router.post("/add",async(request,response)=>{
         newExpenseData.day= dates.getDate();
         newExpenseData.month= dates.getMonth()+1;
         newExpenseData.year= dates.getFullYear();
-        newIncomeData.date = dates;
+        newExpenseData.date = dates;
         const result = await addexpense(newExpenseData)
         response.status(200).json({data:result})
     } catch (error) {
