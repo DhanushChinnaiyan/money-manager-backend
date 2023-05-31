@@ -3,6 +3,8 @@ import cors from "cors";
 import { incomerouter } from "./router/income.js";
 import { expenserouter } from "./router/expense.js";
 import { client } from "./db.js";
+import { newToken } from "./controller/userEntry.js";
+import { userEntryRouter } from "./router/userEntry.js";
 
 
 
@@ -33,8 +35,10 @@ app.get("/",async(req,res)=>{
     res.status(200).json({incomedata:incomedata,expensedata:expensedata})
 })
 
+
 app.use("/income" , incomerouter);
 app.use("/expense",expenserouter);
+app.use("/user",userEntryRouter)
 
 // app.listen(9000,()=>console.log("server started localhost:9000"))
 app.listen(9000)
