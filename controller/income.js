@@ -5,7 +5,7 @@ export const getIncomes = (request) => {
     return client
     .db("moneyManager")
     .collection("income")
-    .find(request.query)
+    .find({userId:request.user._id})
     .toArray()
 }
 

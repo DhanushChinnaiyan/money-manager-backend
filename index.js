@@ -5,6 +5,7 @@ import { expenserouter } from "./router/expense.js";
 import { client } from "./db.js";
 import { newToken } from "./controller/userEntry.js";
 import { userEntryRouter } from "./router/userEntry.js";
+import { isUserSignedIn } from "./controller/userAutorization.js";
 
 
 
@@ -36,8 +37,8 @@ app.get("/",async(req,res)=>{
 })
 
 
-app.use("/income" , incomerouter);
-app.use("/expense",expenserouter);
+app.use("/income" ,isUserSignedIn, incomerouter);
+app.use("/expense",isUserSignedIn,expenserouter);
 app.use("/user",userEntryRouter)
 
 // app.listen(9000,()=>console.log("server started localhost:9000"))

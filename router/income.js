@@ -32,6 +32,7 @@ router.post("/add",async(request,response)=>{
         }
         
         const dates = new Date();
+        newIncomeData.userId = request.user._id
         newIncomeData.day= dates.getDate();
         newIncomeData.month= dates.getMonth()+1;
         newIncomeData.year= dates.getFullYear();

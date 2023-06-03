@@ -31,6 +31,7 @@ router.post("/add",async(request,response)=>{
             return response.status(400).json({data:"No content provided"})
         }
         const dates = new Date()
+        newExpenseData.userId = request.user._id
         newExpenseData.day= dates.getDate();
         newExpenseData.month= dates.getMonth()+1;
         newExpenseData.year= dates.getFullYear();
