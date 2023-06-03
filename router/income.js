@@ -11,14 +11,14 @@ router.get("/",async(request,response)=>{
         
         const result = await getIncomes(request)
         if(result.length<=0){
-            return response.status(404).json({data:"no content available"})
+            return response.status(404).json({message:"no content available"})
         }
         
         return response.status(200).json({data:result})
 
     } catch (error) {
         console.log("error :",error)
-        return response.status(500).json({data:"internal server error"})
+        return response.status(500).json({message:"internal server error"})
     }
 })
 
@@ -28,7 +28,7 @@ router.post("/add",async(request,response)=>{
     try {
         const newIncomeData = request.body;
         if(!newIncomeData){
-            return response.status(400).json({data:"No content provided"})
+            return response.status(400).json({message:"No content provided"})
         }
         
         const dates = new Date();
@@ -43,7 +43,7 @@ router.post("/add",async(request,response)=>{
         response.status(200).json({data:result})
     } catch (error) {
         console.log("error :",error)
-        return response.status(500).json({data:"internal server error"})
+        return response.status(500).json({message:"internal server error"})
         
     }
 })
@@ -56,13 +56,13 @@ router.put("/:id",async (request,response)=>{
     try {
        const updateIncome = request.body;
        if(!updateIncome){
-        return response.status(400).json({data:"No content provided"})
+        return response.status(400).json({message:"No content provided"})
        }
        const result = await editIncome(id,updateIncome)
        return response.status(200).json({data:result})    
     } catch (error) {
         console.log("error :",error)
-        return response.status(500).json({data:"internal server error"})
+        return response.status(500).json({message:"internal server error"})
     }
 })
 
