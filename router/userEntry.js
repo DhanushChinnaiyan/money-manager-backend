@@ -113,7 +113,7 @@ router.put("/resetpassword/:mail", async (request, response) => {
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(request.body.password,salt)
         // password details
-         resetPassword(userToken.email,hashedPassword)
+         resetPassword(user.email,hashedPassword)
     // sending response
     response.status(200).json({message:"Your password has been successfully changed"})
          
