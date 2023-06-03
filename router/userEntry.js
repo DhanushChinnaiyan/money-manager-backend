@@ -34,7 +34,7 @@ router.post("/signup", async (request, response) => {
     // adds new data to mongodb
     await newUser(userDetails);
     // sending response
-    response.status(200).json({ message: "User added successfully" });
+    response.status(200).json({ message: "User signuped successfully " });
   } catch (error) {
     console.log("Signup error", error);
   }
@@ -102,12 +102,12 @@ router.post("/sendmail", async (request, response) => {
 });
 
 // (2) resets the password
-router.put("/resetpassword/:token", async (request, response) => {
+router.put("/resetpassword/:mail", async (request, response) => {
   try {
-    // verifying token
-    const userToken = await getToken(request.params.token)
-    // sends a response if the token ir wrong
-    if(!userToken) return response.status(400).json({message:"Invali URL"})
+    // verifying user
+    const user = await userVerification(request.params.mail);
+    // sends a response if user is not valid
+    if (!user) return response.status(400).json({ message: "User not valid" });
     // changing the password
         // hashed password
             const salt = await bcrypt.genSalt(10)
@@ -121,5 +121,12 @@ router.put("/resetpassword/:token", async (request, response) => {
     console.log("password reseting error", error);
   }
 });
+
+// url token verification
+router.get("/urltoken/:token",async(request,response)=>{
+      const user = await getToken(request.params.token);
+      if(!user) return response.status(400).json({message:"URL not valid"})
+      response.status(200).json({message:"You can reset your password now",user:user})
+})
 
 export const userEntryRouter = router;
