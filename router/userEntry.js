@@ -92,8 +92,6 @@ router.post("/sendmail", async (request, response) => {
       createdAt: new Date(),
     };
     await addToken(tokenDetails);
-    // token expires after 5 min
-    await tokenExpireAt();
     // sending response
     response.status(200).json({ message: "Mail has been sent to your email" });
   } catch (error) {
